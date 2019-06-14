@@ -1,0 +1,18 @@
+{
+    "stack" : "apache",
+    "project_dir": "public",
+    "web_root": "web",
+    "locale": "fr_FR",
+    "timezone": "Europe/Paris",
+    "php_base_version" : "7",
+    "admin": {
+        "user": "tiz",
+        "password": "azertiz67",
+        "email": "tech@tiz.fr",
+        "first_name": "Agence",
+        "last_name": "Tiz"
+    },
+    "settings":{
+
+    }
+}
