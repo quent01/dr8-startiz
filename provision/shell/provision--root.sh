@@ -24,7 +24,8 @@ else
 fi
 
 start_provisionning
-# drupal_provisionning
+apache_provisionning
+drupal_provisionning
 
 end_seconds="$(date +%s)"
 provisionning_time="$(expr $end_seconds - $start_seconds)"

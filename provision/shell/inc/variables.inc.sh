@@ -28,18 +28,29 @@ PATH_A2_SITES_AVAILABLE="/etc/apache2/sites-available/"
 PATH_COMPOSER="/usr/local/bin/composer/"
 PATH_PUBLIC="/var/www/public/"
 PATH_PROVISION="/var/www/provision/"
+PATH_PROVISION_APACHE="${PATH_PROVISION}apache/"
 PATH_PROVISION_SHELL="${PATH_PROVISION}shell/"
 PATH_VAGRANT="/home/vagrant/"
 
 # Filenames
 # ---------------------------------------
-FILE_CONFIG="/var/www/vagrant.json"
-FILE_APACHE_CONF="$PATH_A2_SITES_AVAILABLE/001-tiz.conf"
+FILE_APACHE="001-drupal"
+FILE_APACHE_CONF="${FILE_APACHE}.conf"
 FILE_COMPOSER="$PATH_PUBLIC/composer.json"
 FILE_DRUSH_ALIASES="$PATH_VAGRANT/.drush/aliases.drushrc.php"
 
 # Others
 # ---------------------------------------
 CMS="drupal"
-
+STACK="apache"
+PROJECT_DIR="public"
+WEB_ROOT="var/www/public/web"
+LOCALE="fr_FR"
+TIMEZONE="Europe/Paris"
+PHP_BASE_VERSION="7"
+ADMIN_USER="tiz"
+ADMIN_PWD="azertiz67";
+ADMIN_EMAIL="tech@tiz.fr"
+ADMIN_FIRSTNAME="Agence"
+ADMIN_LASTNAME="Tiz"
 

@@ -1,28 +1,14 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-require 'json'
+# require 'json'
 
 load "./provision/ruby/functions.inc.rb"
 
-if !conf_file_exists()
-    raise "Configuration file not found! Please copy vagrant.example.json to vagrant.json and try again."
-end
-
-json = JSON.parse(File.read("vagrant.json"))
-
 Vagrant.configure("2") do |config|
     
-    if defined?(json["stack"]) && is_apache(json["stack"])
-        if defined?(json['php_base_version']) && is_php7(json['php_base_version'])
-            config.vm.box = "scotch/box-pro"
-        else
-            config.vm.box = "scotch/box"
-            config.vm.box_version = "2.5"
-        end
-    else
-        config.vm.box = "scotch/box-pro-nginx"
-    end
+    config.vm.box = "scotch/box-pro"
+    # config.vm.box = "scotch/box-pro-nginx"
 
     config.vm.hostname = "scotchbox"
     config.vm.network "forwarded_port", guest: 80, host: 8080
