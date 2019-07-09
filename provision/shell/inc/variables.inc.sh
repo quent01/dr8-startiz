@@ -42,6 +42,7 @@ FILE_DRUSH_ALIASES="$PATH_VAGRANT/.drush/aliases.drushrc.php"
 # Others
 # ---------------------------------------
 CMS="drupal"
+SITE_NAME="Ceci est un test"
 STACK="apache"
 PROJECT_DIR="public"
 WEB_ROOT="var/www/public/web"

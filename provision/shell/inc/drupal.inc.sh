@@ -27,7 +27,7 @@ function drupal_install(){
     
     composer create-project drupal-composer/drupal-project:8.x-dev ./ --stability dev --no-interaction
     alert_success "Drupal 8 was downloaded with success."    
-    drush site-install standard --db-url=mysql://${DB_USER}:${DB_PASS}@localhost/${DB_NAME} --account-name=${ADMIN_USER} --account-pass=${ADMIN_PWD}
+    drush site-install standard --db-url=mysql://${DB_USER}:${DB_PASS}@localhost/${DB_NAME} --account-name=${ADMIN_USER} --account-pass=${ADMIN_PWD} --site-name=${SITE_NAME}
 
     alert_success "Drupal 8 has been installed with success."
     alert_success "$(alert_line)"    
