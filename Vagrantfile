@@ -40,6 +40,17 @@ Vagrant.configure("2") do |config|
         vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     end
 
+    # Windows Support
+    if Vagrant::Util::Platform.windows?
+        config.vm.provision "shell",
+        inline: "
+            sudo apt-get install -y dos2unix && 
+            cd /var/www/provision/shell &&
+            find . -type f -name '*.sh' -print0 | xargs -0 dos2unix
+        ",
+        run: "always", privileged: false
+    end
+
     config.vm.provision "shell", path: "provision/shell/provision--root.sh", keep_color: true
     config.vm.provision "shell", path: "provision/shell/provision--vagrant.sh", privileged: false, keep_color: true
 end
