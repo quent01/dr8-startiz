@@ -10,7 +10,8 @@ function apache_configure_vhost(){
     sed -i "s|%WEB_ROOT%|${WEB_ROOT}|g" ${PATH_PROVISION_APACHE}${FILE_APACHE_CONF}
 
     # we copy conf file to vm
-    cp ${PATH_PROVISION_APACHE}${FILE_APACHE_CONF} ${PATH_A2_SITES_AVAILABLE}    
+    cp ${PATH_PROVISION_APACHE}${FILE_APACHE_CONF} ${PATH_A2_SITES_AVAILABLE}
+    sudo chmod 644 ${PATH_A2_SITES_AVAILABLE}${FILE_APACHE_CONF}
     sudo a2dissite 000-default
     sudo a2ensite ${FILE_APACHE}
     sudo service apache2 restart

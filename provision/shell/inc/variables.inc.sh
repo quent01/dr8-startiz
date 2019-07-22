@@ -32,12 +32,6 @@ PATH_PROVISION_APACHE="${PATH_PROVISION}apache/"
 PATH_PROVISION_SHELL="${PATH_PROVISION}shell/"
 PATH_VAGRANT="/home/vagrant/"
 
-# Filenames
-# ---------------------------------------
-FILE_APACHE="001-drupal"
-FILE_APACHE_CONF="${FILE_APACHE}.conf"
-FILE_COMPOSER="$PATH_PUBLIC/composer.json"
-FILE_DRUSH_ALIASES="$PATH_VAGRANT/.drush/aliases.drushrc.php"
 
 # Others
 # ---------------------------------------
@@ -45,7 +39,7 @@ CMS="drupal"
 SITE_NAME="Ceci est un test"
 STACK="apache"
 PROJECT_DIR="public"
-WEB_ROOT="var/www/public/web"
+WEB_ROOT="/var/www/public/web"
 LOCALE="fr_FR"
 TIMEZONE="Europe/Paris"
 PHP_BASE_VERSION="7"
@@ -54,4 +48,12 @@ ADMIN_PWD="azertiz67";
 ADMIN_EMAIL="tech@tiz.fr"
 ADMIN_FIRSTNAME="Agence"
 ADMIN_LASTNAME="Tiz"
+
+
+# Filenames
+# ---------------------------------------
+FILE_APACHE="001-drupal"
+FILE_APACHE_CONF="${FILE_APACHE}.conf"
+FILE_COMPOSER="${WEB_ROOT}/composer.json"
+FILE_DRUSH_ALIASES="${PATH_VAGRANT}/.drush/aliases.drushrc.php"
 
