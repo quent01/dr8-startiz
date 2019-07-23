@@ -32,7 +32,7 @@ function drupal_provisionning(){
     mkdir -p ${PROJECT_DIR}
     cd "${PROJECT_DIR}"
 
-    if [[ "$(drupal_already_installed)" == "true" ]]; then
+    if [[ "$(drupal_already_installed)" -eq 0 ]]; then
         alert_info "Drupal 8 already installed."
         drupal_install_dependencies
     else
