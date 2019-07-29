@@ -4,7 +4,7 @@
 #
 
 function drupal_already_installed(){
-    if [[ -e ${FILE_COMPOSER} ]]; then
+    if [[ -e ${PATH_COMPOSER_JSON} ]]; then
         return 0
     fi
     return 1
