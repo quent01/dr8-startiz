@@ -4,7 +4,7 @@
 #
 
 function drupal_already_installed(){
-    if [[ -e ${PATH_COMPOSER_JSON} ]]; then
+    if [ -f ${PATH_COMPOSER_JSON} ]; then
         return 0
     fi
     return 1
@@ -16,6 +16,7 @@ function drupal_install_dependencies(){
     alert_info "Installation of Drupal 8 dependencies ..."
     alert_info "$(alert_line)"    
     composer --global config process-timeout 0
+    composer global require hirak/prestissimo
     composer install --prefer-dist --optimize-autoloader
     alert_success "Drupal 8 dependencies were installed with success..."
     alert_success "$(alert_line)"
