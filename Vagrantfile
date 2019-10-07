@@ -53,6 +53,33 @@ Vagrant.configure("2") do |config|
         run: "always", privileged: false
     end
 
+    config.vm.provision "shell" do |s|
+        ssh_prv_key = ""
+        ssh_pub_key = ""
+        if File.file?("#{Dir.home}/.ssh/id_rsa")
+            ssh_config = File.read("#{Dir.home}/.ssh/config")
+            ssh_prv_key = File.read("#{Dir.home}/.ssh/id_rsa")
+            ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_rsa.pub").first.strip
+        else
+            puts "No SSH key found. You will need to remedy this before pushing to the repository."
+        end
+        s.inline = <<-SHELL
+            if grep -sq "#{ssh_pub_key}" /home/vagrant/.ssh/authorized_keys; then
+                echo "SSH keys already provisioned."
+                exit 0;
+            fi
+            echo "SSH key provisioning."
+            echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
+            echo #{ssh_pub_key} > /home/vagrant/.ssh/id_rsa.pub
+            chmod 644 /home/vagrant/.ssh/id_rsa.pub
+            echo "#{ssh_prv_key}" > /home/vagrant/.ssh/id_rsa
+            chmod 600 /home/vagrant/.ssh/id_rsa
+            echo "#{ssh_config}" > /home/vagrant/.ssh/config
+            chown -R vagrant:vagrant /home/vagrant
+            exit 0
+        SHELL
+    end
+
     config.vm.provision "shell", path: "provision/shell/provision--root.sh", keep_color: true
     config.vm.provision "shell", path: "provision/shell/provision--vagrant.sh", privileged: false, keep_color: true
 end
