@@ -6,9 +6,10 @@
 # Drupal configuration
 # @desc : This is the part you can edit
 # ---------------------------------------
-SITE_NAME="Ceci est un test"
+# Site_name must contain no space
+SITE_NAME="Drupal"
 PROJECT_DIR="public"
-WEB_ROOT="/var/www/public/web"
+WEB_ROOT="/var/www/public/web/"
 LOCALE="fr_FR"
 TIMEZONE="Europe/Paris"
 ADMIN_USER="tiz"
@@ -58,4 +59,33 @@ PATH_PROVISION_APACHE="${PATH_PROVISION}apache/"
 PATH_PROVISION_SHELL="${PATH_PROVISION}shell/"
 PATH_VAGRANT="/home/vagrant/"
 PATH_DRUSH_ALIASES="${PATH_VAGRANT}/.drush/${FILE_DRUSH_ALIASES}"
+PATH_MODULES_CONTRIB="${WEB_ROOT}modules/contrib/"
 
+
+# Modules
+# ---------------------------------------
+ARR_MODULES[0]="module_filter"
+ARR_MODULES[1]="eu_cookie_compliance"
+ARR_MODULES[2]="better_exposed_filters"
+ARR_MODULES[3]="paragraphs"
+ARR_MODULES[4]="pathauto"
+ARR_MODULES[5]="google_analytics"
+ARR_MODULES[6]="admin_toolbar"
+ARR_MODULES[7]="field_group"
+ARR_MODULES[8]="twig_tweak"
+ARR_MODULES[9]="config_split"
+ARR_MODULES[10]="metatag"
+ARR_MODULES[11]="admin_toolbar"
+ARR_MODULES[12]="block_class"
+
+# Modules DEV
+# ---------------------------------------
+ARR_MODULES_DEV[0]="devel"
+ARR_MODULES_DEV[1]="delete_all"
+
+# Modules To disable
+# ---------------------------------------
+# ARR_MODULE_DISABLE[0]="test"
+
+# Themes
+# ---------------------------------------

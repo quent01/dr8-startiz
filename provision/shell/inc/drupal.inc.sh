@@ -17,9 +17,52 @@ function drupal_install_dependencies(){
     alert_info "$(alert_line)"    
     composer --global config process-timeout 0
     composer global require hirak/prestissimo
+    composer require zaporylie/composer-drupal-optimizations:^1.1 --dev
     composer install --prefer-dist --optimize-autoloader
     alert_success "Drupal 8 dependencies were installed with success..."
     alert_success "$(alert_line)"
+}
+
+function drupal_install_modules(){
+    cd $PATH_PUBLIC
+    local arr=("$@")
+    local opt="${@: -1}"
+    alert_info "Installation of Drupal 8 modules"
+    alert_info "$(alert_line)"
+
+    if [[ $opt == "--dev" ]]; then
+        unset 'arr[${#arr[@]}-1]'
+    fi
+
+    local arr_length="${#arr[@]}"
+
+    for module in "${!arr[@]}"; do
+        local step=$(($module+1))
+        alert_info "(${step}/${arr_length}) : Installation of module drupal/${arr[$module]}"
+
+        if [[ $opt == "--dev" ]]; then
+            composer require --dev "drupal/${arr[$module]}"
+        else
+            composer require "drupal/${arr[$module]}"
+        fi
+    done
+}
+
+function drupal_enable_modules(){
+    local arr=("$@")
+    local arr_length="${#arr[@]}"
+
+    alert_info "Activation of Drupal 8 modules"
+    alert_info "$(alert_line)"
+    for module in "${!arr[@]}"; do
+        local path_module="${PATH_MODULES_CONTRIB}${arr[$module]}"
+        local step=$(($module+1))
+
+        if [[ -d "$path_module" ]]; then
+            alert_info "(${step}/${arr_length}) : Activation of module ${arr[$module]}"
+            drush en ${arr[$module]}
+        fi
+    done
 }
 
 function drupal_install(){
@@ -31,6 +74,15 @@ function drupal_install(){
     composer install --prefer-dist --optimize-autoloader
     alert_success "Drupal 8 was downloaded with success."    
     drush site-install standard --db-url=mysql://${DB_USER}:${DB_PASS}@localhost/${DB_NAME} --account-name=${ADMIN_USER} --account-pass=${ADMIN_PWD} --site-name=${SITE_NAME}
+
+    # Installation of modules
+    cd $PATH_PUBLIC
+    for module in "${!ARR_MODULES[@]}"; do
+        alert_info "Installation of module ${ARR_MODULES[$module]}"
+        composer require ${ARR_MODULES[$module]}
+    done
+
+    # Activation of modules
     
     sudo find ./ -type f -exec chmod 664 {} +
     sudo find ./ -type d -exec chmod 775 {} +

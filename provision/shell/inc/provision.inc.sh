@@ -39,6 +39,12 @@ function drupal_provisionning(){
         drupal_install
     fi
 
+    drupal_install_modules "${ARR_MODULES[@]}"
+    drupal_install_modules "${ARR_MODULES_DEV[@]}" "--dev"
+    
+    drupal_enable_modules "${ARR_MODULES[@]}"
+    drupal_enable_modules "${ARR_MODULES_DEV[@]}"
+
     alert_success "$(alert_line)"
     alert_success "End Provisioning Drupal..."
     alert_success "$(alert_line)"
