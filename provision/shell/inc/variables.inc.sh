@@ -51,8 +51,8 @@ FILE_DRUSH_ALIASES="aliases.drushrc.php"
 # Paths
 # ---------------------------------------
 PATH_A2_SITES_AVAILABLE="/etc/apache2/sites-available/"
-PATH_COMPOSER_JSON="${WEB_ROOT}/composer.json"
 PATH_PUBLIC="/var/www/public/"
+PATH_COMPOSER_JSON="${PATH_PUBLIC}/composer.json"
 PATH_PROVISION="/var/www/provision/"
 PATH_PROVISION_APACHE="${PATH_PROVISION}apache/"
 PATH_PROVISION_SHELL="${PATH_PROVISION}shell/"
