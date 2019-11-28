@@ -25,7 +25,7 @@ function apache_provisionning(){
 
 function drupal_provisionning(){
     alert_info "$(alert_line)"
-    alert_info "Provisioning Drupal..."
+    alert_info "Provisioning ${CMS} ${CMS_VERSION}..."
     alert_info "$(alert_line)"
 
     cd /var/www/
@@ -33,19 +33,13 @@ function drupal_provisionning(){
     cd "${PROJECT_DIR}"
 
     if drupal_already_installed; then
-        alert_info "Drupal 8 already installed."
+        alert_info "${CMS} ${CMS_VERSION} already installed."
         drupal_install_dependencies
     else
         drupal_install
     fi
 
-    drupal_install_modules "${ARR_MODULES[@]}"
-    drupal_install_modules "${ARR_MODULES_DEV[@]}" "--dev"
-    
-    drupal_enable_modules "${ARR_MODULES[@]}"
-    drupal_enable_modules "${ARR_MODULES_DEV[@]}"
-
     alert_success "$(alert_line)"
-    alert_success "End Provisioning Drupal..."
+    alert_success "End Provisioning ${CMS} ${CMS_VERSION}..."
     alert_success "$(alert_line)"
 }
