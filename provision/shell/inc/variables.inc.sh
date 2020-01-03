@@ -17,6 +17,7 @@ ADMIN_PWD="azertiz67"
 ADMIN_EMAIL="tech@tiz.fr"
 ADMIN_FIRSTNAME="Agence"
 ADMIN_LASTNAME="Tiz"
+USE_HTTPS="1"
 
 
 # Vagrant variables
@@ -46,7 +47,9 @@ C_WHITE='\033[0;97m'
 # Filenames
 # ---------------------------------------
 FILE_APACHE="001-drupal"
+FILE_APACHE_SSL="${FILE_APACHE}-ssl"
 FILE_APACHE_CONF="${FILE_APACHE}.conf"
+FILE_APACHE_SSL_CONF="${FILE_APACHE_SSL}.conf"
 FILE_DRUSH_ALIASES="aliases.drushrc.php"
 
 
