@@ -18,7 +18,7 @@ function drupal_install_dependencies(){
     composer --global config process-timeout 0
     composer global require hirak/prestissimo
     composer require zaporylie/composer-drupal-optimizations:^1.1 --dev
-    composer install --prefer-dist --optimize-autoloader
+    composer install --no-progress --profile --prefer-dist --optimize-autoloader
     alert_success "${CMS} ${CMS_VERSION} dependencies were installed with success..."
     alert_success "$(alert_line)"
 }
@@ -60,7 +60,7 @@ function drupal_enable_modules(){
 
         if [[ -d "$path_module" ]]; then
             alert_info "(${step}/${arr_length}) : Activation of module ${arr[$module]}"
-            drush en ${arr[$module]}
+            vendor/bin/drush en ${arr[$module]}
         fi
     done
 }
@@ -69,9 +69,13 @@ function drupal_install(){
     alert_info "Installation of ${CMS} ${CMS_VERSION}..."
     alert_info "$(alert_line)"   
     
-    composer --global config process-timeout 0    
+    composer --global config process-timeout 0   
+    composer global require hirak/prestissimo
+
     composer create-project drupal-composer/drupal-project:8.x-dev ./ --stability dev --no-interaction --no-install --prefer-dist --remove-vcs
-    composer install --prefer-dist --optimize-autoloader
+    
+    composer require zaporylie/composer-drupal-optimizations:^1.1 --dev
+    composer install --no-progress --profile --prefer-dist --optimize-autoloader
     alert_success "${CMS} ${CMS_VERSION} was downloaded with success."    
     drush site-install standard --db-url=mysql://${DB_USER}:${DB_PASS}@localhost/${DB_NAME} --account-name=${ADMIN_USER} --account-pass=${ADMIN_PWD} --site-name=${SITE_NAME}
 

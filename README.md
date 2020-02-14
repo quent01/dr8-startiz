@@ -15,6 +15,7 @@
 ## Utilisation
 
 - just do ````vagrant up``` and possibly ```vagrant provision```
+- the first provisionning with drupal installation and modules is quite long, it take approximately 25m, so be patient.
 
 
 ## More Informations

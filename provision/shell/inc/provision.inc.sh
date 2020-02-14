@@ -9,6 +9,8 @@ function start_provisionning(){
     alert_info "You choose to install ${CMS} version 8 with the stack ${STACK}"
     alert_info "Your project directory will be ${PROJECT_DIR} and web root ${WEB_ROOT}"
     alert_info "It will work on php ${PHP_BASE_VERSION}"
+
+    sudo composer self-update
 }
 
 function apache_provisionning(){
