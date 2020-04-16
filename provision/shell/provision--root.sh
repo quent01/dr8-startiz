@@ -28,8 +28,9 @@ apache_provisionning
 drupal_provisionning
 
 end_seconds="$(date +%s)"
-provisionning_time="$(expr $end_seconds - $start_seconds)"
-alert_info "Provisioning complete in ${provisionning_time} seconds"
+provisionning_time="$(($end_seconds - $start_seconds))"
+provisionning_time="$(($provisionning_time / 60))"
+alert_info "Provisioning complete in ${provisionning_time} minutess"
 if [[ $ping_result == "Connected" ]]; then
 	alert_info "External network connection established, packages up to date."
 else

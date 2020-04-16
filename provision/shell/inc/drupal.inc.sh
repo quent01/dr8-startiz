@@ -17,14 +17,15 @@ function drupal_install_dependencies(){
     alert_info "$(alert_line)"    
     composer --global config process-timeout 0
     composer global require hirak/prestissimo
-    composer require zaporylie/composer-drupal-optimizations:^1.1 --dev
-    composer install --no-progress --profile --prefer-dist --optimize-autoloader
+    composer require --no-progress --prefer-dist --no-suggest zaporylie/composer-drupal-optimizations:^1.1 --dev
+    composer install --no-progress --prefer-dist --no-plugins --no-suggest
     alert_success "${CMS} ${CMS_VERSION} dependencies were installed with success..."
     alert_success "$(alert_line)"
 }
 
 function drupal_install_modules(){
     cd $PATH_PUBLIC
+
     local arr=("$@")
     local opt="${@: -1}"
     alert_info "Installation of ${CMS} ${CMS_VERSION} modules"
@@ -41,14 +42,16 @@ function drupal_install_modules(){
         alert_info "(${step}/${arr_length}) : Installation of module drupal/${arr[$module]}"
 
         if [[ $opt == "--dev" ]]; then
-            composer require --dev "drupal/${arr[$module]}"
+            composer require --dev --no-progress --prefer-dist --no-suggest "drupal/${arr[$module]}"
         else
-            composer require "drupal/${arr[$module]}"
+            composer require --no-progress --prefer-dist --no-suggest "drupal/${arr[$module]}"
         fi
     done
 }
 
 function drupal_enable_modules(){
+    cd $PATH_PUBLIC
+    
     local arr=("$@")
     local arr_length="${#arr[@]}"
 
@@ -60,27 +63,28 @@ function drupal_enable_modules(){
 
         if [[ -d "$path_module" ]]; then
             alert_info "(${step}/${arr_length}) : Activation of module ${arr[$module]}"
-            vendor/bin/drush en ${arr[$module]}
+            vendor/bin/drupal module:install --no-interaction --yes ${arr[$module]}
         fi
     done
 }
 
 function drupal_install(){
     alert_info "Installation of ${CMS} ${CMS_VERSION}..."
-    alert_info "$(alert_line)"   
+    alert_info "$(alert_line)"
+
+    cd $PATH_PUBLIC
     
     composer --global config process-timeout 0   
-    composer global require hirak/prestissimo
+    composer global require --no-progress --prefer-dist hirak/prestissimo 
 
-    composer create-project drupal-composer/drupal-project:8.x-dev ./ --stability dev --no-interaction --no-install --prefer-dist --remove-vcs
-    
-    composer require zaporylie/composer-drupal-optimizations:^1.1 --dev
-    composer install --no-progress --profile --prefer-dist --optimize-autoloader
+    composer create-project "drupal-composer/drupal-project:${CMS_VERSION}.x-dev" ./ --no-progress --stability dev --no-interaction --no-install --prefer-dist
+
+    composer install --no-progress --prefer-dist --no-suggest
+    composer require --no-progress --prefer-dist --no-suggest zaporylie/composer-drupal-optimizations:^1.1 --dev
     alert_success "${CMS} ${CMS_VERSION} was downloaded with success."    
-    drush site-install standard --db-url=mysql://${DB_USER}:${DB_PASS}@localhost/${DB_NAME} --account-name=${ADMIN_USER} --account-pass=${ADMIN_PWD} --site-name=${SITE_NAME}
+    vendor/bin/drupal site:install standard --langcode="fr" --db-port="3306" --db-prefix="" --db-type="mysql" --db-host="127.0.0.1" --db-name="${DB_NAME}" --db-user="${DB_USER}" --db-pass="${DB_PASS}" --account-name="${ADMIN_USER}" --account-mail="${ADMIN_EMAIL}" --account-pass="${ADMIN_PWD}" --site-name="${SITE_NAME}" --site-mail="${ADMIN_EMAIL}"
 
     # Installation of modules
-    cd $PATH_PUBLIC
     drupal_install_modules "${ARR_MODULES[@]}"
     drupal_enable_modules "${ARR_MODULES[@]}"
     

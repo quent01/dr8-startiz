@@ -28,7 +28,7 @@ DB_PASS="root"
 PHP_BASE_VERSION="7"
 STACK="apache"
 CMS="drupal"
-CMS_version="8"
+CMS_VERSION="8"
 
 
 # Colors
