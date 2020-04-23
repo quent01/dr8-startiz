@@ -69,14 +69,14 @@ drush_make_options: "--no-gitinfofile"
 # Set 'drupal_build_makefile' to 'false' and this to 'true' if you are using a
 # composer based site deployment strategy.
 drupal_build_composer: false
-drupal_composer_path: "{{ config_dir }}/drupal.composer.json"
+drupal_composer_path: false
 drupal_composer_install_dir: "/var/www/drupalvm/public"
 drupal_composer_dependencies:
   - "drupal/admin_toolbar:^2.2"
   - "drupal/better_exposed_filters:^4.0@beta"
   - "drupal/block_class:^1.1"
   - "drupal/config_split:^1.4"
-  - "drupal/devel:^1.2"
+  - "drupal/devel:^3.0"
   - "drupal/eu_cookie_compliance:^1.8"
   - "drupal/field_group:^3.0"
   - "drupal/google_analytics:^3.0"
@@ -123,6 +123,9 @@ drupal_enable_modules:
   - "paragraphs"
   - "pathauto"
   - "twig_tweak"
+  - "language"
+  - "locale"
+  - "inline_form_errors"
 drupal_account_name: admin
 drupal_account_pass: admin
 

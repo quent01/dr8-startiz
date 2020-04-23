@@ -20,5 +20,6 @@ local.config.yml
 # /config.yml
 # /docker-compose.yml
 # /drupal.make.yml
+vendor
 /scripts/
 /public/
