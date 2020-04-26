@@ -85,6 +85,7 @@ drupal_composer_dependencies:
   - "drupal/paragraphs:^1.11"
   - "drupal/pathauto:^1.6"
   - "drupal/twig_tweak:^2.5"
+  - "drupal/bootstrap_barrio:^4.25"
 
 # Set this to 'true' and 'drupal_build_makefile', 'drupal_build_composer' to 'false'
 # if you are using Composer's create-project as a site deployment strategy.
