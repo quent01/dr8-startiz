@@ -130,7 +130,7 @@ drupal_account_name: admin
 drupal_account_pass: admin
 
 # Additional arguments or options to pass to `drush site-install`.
-drupal_site_install_extra_args: []
+drupal_site_install_extra_args: [--locale=fr]
 
 # Cron jobs are added to the vagrant user's crontab. Keys include name
 # (required), minute, hour, day, weekday, month, job (required), and state.
