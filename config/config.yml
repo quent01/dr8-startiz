@@ -75,7 +75,9 @@ drupal_composer_dependencies:
   - "drupal/admin_toolbar:^2.2"
   - "drupal/better_exposed_filters:^4.0@beta"
   - "drupal/block_class:^1.1"
+  - "drupal/bootstrap_barrio:^4.25"
   - "drupal/config_split:^1.4"
+  - "drupal/ctools"
   - "drupal/devel:^3.0"
   - "drupal/eu_cookie_compliance:^1.8"
   - "drupal/field_group:^3.0"
@@ -84,8 +86,10 @@ drupal_composer_dependencies:
   - "drupal/module_filter:^3.1"
   - "drupal/paragraphs:^1.11"
   - "drupal/pathauto:^1.6"
+  - "drupal/recaptcha"
+  - "drupal/redirect"
   - "drupal/twig_tweak:^2.5"
-  - "drupal/bootstrap_barrio:^4.25"
+  - "drupal/webform"
 
 # Set this to 'true' and 'drupal_build_makefile', 'drupal_build_composer' to 'false'
 # if you are using Composer's create-project as a site deployment strategy.
@@ -115,23 +119,28 @@ drupal_enable_modules:
   - "better_exposed_filters"
   - "block_class"
   - "config_split"
+  - "ctools"
   - "devel"
   - "eu_cookie_compliance"
   - "field_group"
   - "google_analytics"
+  - "inline_form_errors"
+  - "language"
+  - "locale"
   - "metatag"
   - "module_filter"
   - "paragraphs"
   - "pathauto"
+  # - "recaptcha"
+  - "redirect"
   - "twig_tweak"
-  - "language"
-  - "locale"
-  - "inline_form_errors"
+  - "webform"
 drupal_account_name: admin
 drupal_account_pass: admin
 
 # Additional arguments or options to pass to `drush site-install`.
-drupal_site_install_extra_args: [--locale=fr]
+drupal_site_install_extra_args: 
+  - --locale=fr
 
 # Cron jobs are added to the vagrant user's crontab. Keys include name
 # (required), minute, hour, day, weekday, month, job (required), and state.
