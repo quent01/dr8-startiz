@@ -90,6 +90,7 @@ drupal_composer_dependencies:
   - "drupal/redirect"
   - "drupal/twig_tweak:^2.5"
   - "drupal/webform"
+  - "oomphinc/composer-installers-extender"
 
 # Set this to 'true' and 'drupal_build_makefile', 'drupal_build_composer' to 'false'
 # if you are using Composer's create-project as a site deployment strategy.
