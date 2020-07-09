@@ -78,7 +78,7 @@ drupal_composer_dependencies:
   - "drupal/bootstrap_barrio:^4.25"
   - "drupal/config_split:^1.4"
   - "drupal/ctools"
-  - "drupal/devel:^3.0"
+  - "drupal/devel:^4.0"
   - "drupal/eu_cookie_compliance:^1.8"
   - "drupal/field_group:^3.0"
   - "drupal/google_analytics:^3.0"
