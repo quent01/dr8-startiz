@@ -33,7 +33,7 @@ vagrant_synced_folders:
   # the drupal-vm folder.
   - local_path: .
     destination: /var/www/drupalvm
-    type: nfs
+    # type: nfs
     create: true
 
 # Memory and CPU to use for this VM.
@@ -69,7 +69,7 @@ drush_make_options: "--no-gitinfofile"
 # Set 'drupal_build_makefile' to 'false' and this to 'true' if you are using a
 # composer based site deployment strategy.
 drupal_build_composer: false
-drupal_composer_path: false
+drupal_composer_path: "{{ config_dir }}/drupal.composer.json"
 drupal_composer_install_dir: "/var/www/drupalvm/public"
 drupal_composer_dependencies:
   - "drupal/admin_toolbar:^2.2"
