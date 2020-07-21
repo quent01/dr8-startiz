@@ -260,7 +260,7 @@ postgresql_databases:
 installed_extras:
   - adminer
   # - blackfire
-  # - drupalconsole
+  - drupalconsole
   - drush
   # - elasticsearch
   # - java
