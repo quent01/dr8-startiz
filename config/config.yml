@@ -72,38 +72,38 @@ drupal_build_composer: false
 drupal_composer_path: "{{ config_dir }}/drupal.composer.json"
 drupal_composer_install_dir: "/var/www/drupalvm/public"
 drupal_composer_dependencies:
-  - "drupal/admin_toolbar:^2.2"
-  - "drupal/better_exposed_filters:^4.0@beta"
-  - "drupal/block_class:^1.1"
-  - "drupal/bootstrap_barrio:^4.25"
-  - "drupal/config_split:^1.4"
-  - "drupal/ctools"
-  - "drupal/devel:^4.0"
-  - "drupal/eu_cookie_compliance:^1.8"
-  - "drupal/field_group:^3.0"
-  - "drupal/google_analytics:^3.0"
-  - "drupal/metatag:^1.12"
-  - "drupal/module_filter:^3.1"
-  - "drupal/paragraphs:^1.11"
-  - "drupal/pathauto:^1.6"
-  - "drupal/recaptcha"
-  - "drupal/redirect"
-  - "drupal/twig_tweak:^2.5"
-  - "drupal/webform"
-  - "oomphinc/composer-installers-extender"
+  # - "drupal/admin_toolbar:^2.2"
+  # - "drupal/better_exposed_filters:^4.0@beta"
+  # - "drupal/block_class:^1.1"
+  # - "drupal/bootstrap_barrio:^4.25"
+  # - "drupal/config_split:^1.4"
+  # - "drupal/ctools"
+  # - "drupal/devel:^4.0"
+  # - "drupal/eu_cookie_compliance:^1.8"
+  # - "drupal/field_group:^3.0"
+  # - "drupal/google_analytics:^3.0"
+  # - "drupal/metatag:^1.12"
+  # - "drupal/module_filter:^3.1"
+  # - "drupal/paragraphs:^1.11"
+  # - "drupal/pathauto:^1.6"
+  # - "drupal/recaptcha"
+  # - "drupal/redirect"
+  # - "drupal/twig_tweak:^2.5"
+  # - "drupal/webform"
+  # - "oomphinc/composer-installers-extender"
 
 # Set this to 'true' and 'drupal_build_makefile', 'drupal_build_composer' to 'false'
 # if you are using Composer's create-project as a site deployment strategy.
 drupal_build_composer_project: true
-drupal_composer_project_package: "drupal-composer/drupal-project:8.x-dev"
-drupal_composer_project_options: "--prefer-dist --stability dev --no-interaction"
+drupal_composer_project_package: "vardot/varbase-project"
+drupal_composer_project_options: "--no-dev --no-interaction"
 
 # Set this to 'false' if you don't need to install drupal (using the drupal_*
 # settings below), but instead copy down a database (e.g. using drush sql-sync).
 drupal_install_site: true
 
 # Required Drupal settings.
-drupal_core_path: "{{ drupal_composer_install_dir }}/web"
+drupal_core_path: "{{ drupal_composer_install_dir }}/docroot"
 drupal_core_owner: "{{ drupalvm_user }}"
 drupal_db_user: drupal
 drupal_db_password: drupal
@@ -114,28 +114,28 @@ drupal_db_host: localhost
 drupal_major_version: 8
 drupal_domain: "{{ vagrant_hostname }}"
 drupal_site_name: "Drupal"
-drupal_install_profile: standard
+drupal_install_profile: varbase
 drupal_enable_modules:
-  - "admin_toolbar"
-  - "better_exposed_filters"
-  - "block_class"
-  - "config_split"
-  - "ctools"
-  - "devel"
-  - "eu_cookie_compliance"
-  - "field_group"
-  - "google_analytics"
-  - "inline_form_errors"
-  - "language"
-  - "locale"
-  - "metatag"
-  - "module_filter"
-  - "paragraphs"
-  - "pathauto"
-  # - "recaptcha"
-  - "redirect"
-  - "twig_tweak"
-  - "webform"
+  # - "admin_toolbar"
+  # - "better_exposed_filters"
+  # - "block_class"
+  # - "config_split"
+  # - "ctools"
+  # - "devel"
+  # - "eu_cookie_compliance"
+  # - "field_group"
+  # - "google_analytics"
+  # - "inline_form_errors"
+  # - "language"
+  # - "locale"
+  # - "metatag"
+  # - "module_filter"
+  # - "paragraphs"
+  # - "pathauto"
+  # # - "recaptcha"
+  # - "redirect"
+  # - "twig_tweak"
+  # - "webform"
 drupal_account_name: admin
 drupal_account_pass: admin
 
@@ -260,7 +260,7 @@ postgresql_databases:
 installed_extras:
   - adminer
   # - blackfire
-  - drupalconsole
+  # - drupalconsole
   - drush
   # - elasticsearch
   # - java
